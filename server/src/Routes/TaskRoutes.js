@@ -7,9 +7,10 @@ router.post('/', (req, res) => {
     const { userId, title, desc, isCompleted } = req.body;
 
     todoTask.create({
-
+        userId,
         title,
         desc,
+        isCompleted
 
     })
         .then((result) => {

@@ -7,15 +7,13 @@ autoIncrement.initialize(mongoose.connection);
 const todoSchema = mongoose.Schema({
     userId: {
         type: Number,
-        unique: true
     },
     title: {
         type: String,
-        required: true
+        
     },
     desc: {
         type: String,
-        required: true
     },
     isCompleted: {
         type: Boolean,

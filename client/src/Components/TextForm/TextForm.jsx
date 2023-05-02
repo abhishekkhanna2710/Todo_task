@@ -4,6 +4,8 @@ import TextField from '@mui/material/TextField';
 import { Grid, Button } from '@mui/material';
 import { useState } from 'react';
 import TodoList from '../TodoList/TodoList';
+
+
 const style = {
     position: 'absolute',
     top: '30%',
@@ -15,24 +17,19 @@ const style = {
     p: 4,
 };
 function TextForm() {
+
     const [user, setUser] = useState({
         title: "",
         desc: "",
     });
 
+
     // onchange function
     const handleInputChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value })
-        // console.log(user)
     }
 
-    // Submit function
-    // const handleSubmit = async (event) => {
-    //     event.preventDefault();
-    //     const { name, desc } = user;
-    //     console.log(user)
-    // }
-
+// Submit Function
     const handleSubmit = async (event) => {
         event.preventDefault();
         const { title, desc } = user;
@@ -46,6 +43,8 @@ function TextForm() {
                 body: JSON.stringify({ title, desc })
             });
             const data = await response.json();
+            setUser({ title: "", desc: "" });
+            
             console.log(data);
         } catch (error) {
             console.error(error);
