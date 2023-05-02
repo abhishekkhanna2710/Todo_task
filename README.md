@@ -26,7 +26,7 @@ In backend part I used Node JS server which typically perform CRUD Functionality
 You should have to clone this repo
 
 ```bash
-https://github.com/abhishekkhanna2710/React_CRUD.git
+https://github.com/abhishekkhanna2710/Todo_task.git
 ```
 
 Now open the terminal
