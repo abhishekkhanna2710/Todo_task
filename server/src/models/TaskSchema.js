@@ -2,8 +2,7 @@ const mongoose = require("mongoose");
 
 const todoSchema = mongoose.Schema({
     userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+        type: Number,
         required: true
     },
     title: {

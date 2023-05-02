@@ -12,7 +12,7 @@ router.post("/", async (req, res) => {
         }
         for (const task of routesArray) {
             const { userId, title, desc, isCompleted } = task;
-            const data = new Products({ userId, title, desc, isCompleted });
+            const data = new todoTask({ userId, title, desc, isCompleted });
             await data.save();
         }
 
@@ -27,9 +27,9 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
     try {
-        res.send("Hello todo");
-        // const products = await Products.find();
-        // return res.status(200).send(products);
+        // res.send("Hello todo");
+        const todos = await todoTask.find();
+        return res.status(200).send(todos);
 
     } catch (error) {
         console.log(error)
