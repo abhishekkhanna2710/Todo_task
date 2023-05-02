@@ -4,6 +4,7 @@ const app = express();
 const cors = require('cors');
 const connection = require("./db/Connection.js")
 const todoTask = require("./models/TaskSchema.js");
+const todoRoutes = require("./Routes/TaskRoutes.js")
 
 
 
@@ -16,7 +17,7 @@ app.use(cors());
 
 
 //router file linked
-app.use("/api/todo", todoTask);
+app.use("/api/todo", todoRoutes);
 
 
 const port = process.env.PORT || 5000;

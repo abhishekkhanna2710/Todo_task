@@ -16,18 +16,19 @@ const style = {
 function TextForm() {
     const [user, setUser] = useState({
         name: "",
+        desc: "",
     });
 
     // onchange function
     const handleInputChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value })
-        console.log(user)
+        // console.log(user)
     }
 
     // Submit function
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const { name } = user;
+        const { name, desc } = user;
 
         console.log(user)
     }
@@ -35,6 +36,7 @@ function TextForm() {
         <Box sx={style}>
 
             <TextField id="standard-basic" name="name" label="Type your task" variant="standard" fullWidth value={user.name} onChange={handleInputChange} />
+            <TextField id="standard-basic" name="desc" label="Description" variant="standard" fullWidth value={user.desc} onChange={handleInputChange} />
 
             <Grid container justifyContent="center" marginTop={4}>
                 <Button variant="outlined" style={{ background: "#EC401B", color: "white", border: "none" }} onClick={handleSubmit}>
