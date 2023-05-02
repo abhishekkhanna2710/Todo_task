@@ -3,9 +3,10 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Grid, Button } from '@mui/material';
 import { useState } from 'react';
+import TodoList from '../TodoList/TodoList';
 const style = {
     position: 'absolute',
-    top: '23%',
+    top: '30%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
@@ -33,17 +34,21 @@ function TextForm() {
         console.log(user)
     }
     return (
-        <Box sx={style}>
+        <>
+            <Box sx={style}>
 
-            <TextField id="standard-basic" name="name" label="Type your task" variant="standard" fullWidth value={user.name} onChange={handleInputChange} />
-            <TextField id="standard-basic" name="desc" label="Description" variant="standard" fullWidth value={user.desc} onChange={handleInputChange} />
+                <TextField id="standard-basic" name="name" label="Type your task" variant="standard" fullWidth value={user.name} onChange={handleInputChange} />
+                <TextField id="standard-basic" name="desc" label="Description" variant="standard" fullWidth value={user.desc} onChange={handleInputChange} />
 
-            <Grid container justifyContent="center" marginTop={4}>
-                <Button variant="outlined" style={{ background: "#EC401B", color: "white", border: "none" }} onClick={handleSubmit}>
-                    Submit
-                </Button>
-            </Grid>
-        </Box>
+                <Grid container justifyContent="center" marginTop={4}>
+                    <Button variant="outlined" style={{ background: "#EC401B", color: "white", border: "none" }} onClick={handleSubmit}>
+                        Submit
+                    </Button>
+                </Grid>
+
+            </Box>
+            <TodoList />
+        </>
     )
 }
 
