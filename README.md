@@ -6,7 +6,6 @@
    <li>Todo page  </li>
  </ul>
 
-<br />
 
 ### Server Part
 In backend part I used Node JS server which typically perform CRUD Functionality.
