@@ -16,7 +16,10 @@ In backend part I used Node JS server which typically perform CRUD Functionality
 
 **Frontend:** `React, Material-UI`
 
-**Backend:** `JSON Server deployed on cyclic`
+**Backend:** `Node js, Express Js, deployed on cyclic`
+
+**Database:** `MongoDB`
+
 
 <br />
 ## If you have to run in your system(Locally)
@@ -35,14 +38,17 @@ Install dependencies
   npm install
 ```
 
-Start the server
+Start the Client
 
 ```bash
   npm run dev
 ```
-### Overview of the Project
 
+Start the Server
 
+```bash
+  npm start
+```
 
 
 <h1>Thank You</h1>
