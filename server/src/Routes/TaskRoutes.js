@@ -2,6 +2,7 @@ const router = require("express").Router();
 
 const todoTask = require("../models/TaskSchema.js");
 
+// Post Request
 router.post("/", async (req, res) => {
 
     const routesArray = req.body;
@@ -24,7 +25,7 @@ router.post("/", async (req, res) => {
     }
 })
 
-
+// Get Request
 router.get("/", async (req, res) => {
     try {
         // res.send("Hello todo");
@@ -35,5 +36,37 @@ router.get("/", async (req, res) => {
         console.log(error)
     }
 })
+
+
+// Update request
+router.put("/:id", async (req, res) => {
+    try {
+        const { title, desc, isCompleted } = req.body;
+        const todo = await todoTask.findByIdAndUpdate(
+            req.params.id,
+            { title, desc, isCompleted },
+            { new: true }
+        );
+        return res.status(200).send({ message: "Todo updated successfully", todo });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send({ message: "Internal server error" });
+    }
+});
+
+// Delete Request
+
+router.delete("/:id", async (req, res) => {
+    try {
+        const deletedTodo = await todoTask.findByIdAndDelete(req.params.id);
+        if (!deletedTodo) {
+            return res.status(404).send({ message: "Todo not found" });
+        }
+        res.status(200).send({ message: "Todo deleted successfully" });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ message: "Internal server error" });
+    }
+});
 
 module.exports = router;

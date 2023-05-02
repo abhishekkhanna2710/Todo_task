@@ -3,7 +3,6 @@ const express = require("express");
 const app = express();
 const cors = require('cors');
 const connection = require("./db/Connection.js")
-const todoTask = require("./models/TaskSchema.js");
 const todoRoutes = require("./Routes/TaskRoutes.js")
 
 
