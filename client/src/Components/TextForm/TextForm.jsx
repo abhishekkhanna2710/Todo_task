@@ -16,7 +16,7 @@ const style = {
 };
 function TextForm() {
     const [user, setUser] = useState({
-        name: "",
+        title: "",
         desc: "",
     });
 
@@ -27,17 +27,37 @@ function TextForm() {
     }
 
     // Submit function
+    // const handleSubmit = async (event) => {
+    //     event.preventDefault();
+    //     const { name, desc } = user;
+    //     console.log(user)
+    // }
+
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const { name, desc } = user;
+        const { title, desc } = user;
 
-        console.log(user)
+        try {
+            const response = await fetch('http://localhost:5000/api/todo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ title, desc })
+            });
+            const data = await response.json();
+            console.log(data);
+        } catch (error) {
+            console.error(error);
+        }
     }
+
+
     return (
         <>
             <Box sx={style}>
 
-                <TextField id="standard-basic" name="name" label="Type your task" variant="standard" fullWidth value={user.name} onChange={handleInputChange} />
+                <TextField id="standard-basic" name="title" label="Type your task" variant="standard" fullWidth value={user.name} onChange={handleInputChange} />
                 <TextField id="standard-basic" name="desc" label="Description" variant="standard" fullWidth value={user.desc} onChange={handleInputChange} />
 
                 <Grid container justifyContent="center" marginTop={4}>
@@ -47,7 +67,12 @@ function TextForm() {
                 </Grid>
 
             </Box>
-            <TodoList />
+
+            <Box>
+                <Grid justifyContent="center" marginTop={40}>
+                    <TodoList />
+                </Grid>
+            </Box>
         </>
     )
 }

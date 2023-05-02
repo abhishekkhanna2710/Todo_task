@@ -3,27 +3,23 @@ const router = require("express").Router();
 const todoTask = require("../models/TaskSchema.js");
 
 // Post Request
-router.post("/", async (req, res) => {
+router.post('/', (req, res) => {
+    const { userId, title, desc, isCompleted } = req.body;
 
-    const routesArray = req.body;
-    try {
+    todoTask.create({
 
-        if (!Array.isArray(routesArray)) {
-            return res.status(400).send({ message: "Routes should be an array" });
-        }
-        for (const task of routesArray) {
-            const { userId, title, desc, isCompleted } = task;
-            const data = new todoTask({ userId, title, desc, isCompleted });
-            await data.save();
-        }
+        title,
+        desc,
 
-        return res.status(200).send({ message: "todos saved successfully" });
-    } catch (error) {
-        console.log(error);
-        return res.status(500).send({ message: "Internal server error" });
-
-    }
-})
+    })
+        .then((result) => {
+            res.status(201).json({ message: 'Todo saved successfully', todo: result });
+        })
+        .catch((error) => {
+            console.error('Error saving todo:', error);
+            res.status(500).json({ error: 'An error occurred while saving the todo' });
+        });
+});
 
 // Get Request
 router.get("/", async (req, res) => {

@@ -1,9 +1,13 @@
 const mongoose = require("mongoose");
+const autoIncrement = require("mongoose-auto-increment");
+
+autoIncrement.initialize(mongoose.connection);
+
 
 const todoSchema = mongoose.Schema({
     userId: {
         type: Number,
-        required: true
+        unique: true
     },
     title: {
         type: String,
@@ -16,7 +20,6 @@ const todoSchema = mongoose.Schema({
     isCompleted: {
         type: Boolean,
         default: false,
-        required: true
     }
 })
 
