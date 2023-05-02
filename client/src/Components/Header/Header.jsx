@@ -1,9 +1,12 @@
 import React from 'react'
+import Typography from '@mui/material/Typography';
 
 function Header() {
     return (
         <div>
-            <h1>TODO LIST</h1>
+            <Typography variant="h4" style={{ textAlign: "center", fontWeight: 600, marginTop: "20px" }}>
+                TODO LIST
+            </Typography>
         </div>
     )
 }
