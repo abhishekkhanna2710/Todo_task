@@ -21,7 +21,7 @@ I used React JS to give a beautifully user Interface
 In backend part I used Node JS server which typically perform CRUD Functionality.
 <br />
 
-### `Tech Stack`
+### `Tech Stack` 
 
 **Frontend:** `React, Material-UI`
 
