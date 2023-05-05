@@ -1,4 +1,4 @@
-# Build a TODO App for MERN APPLICATION
+# Build a TODO App for MERN APPLICATION 
 
 1). Create a MongoDB database schema for Todo items with fields such as name, description, deadline, and status.</br>
 2). Use React to build a frontend interface for creating, updating, and deleting Todo items, and use Node.js and Express to handle backend API requests to interact with the database.
