@@ -35,7 +35,7 @@ const style = {
 };
 function TodoList() {
     const tableStyle = {
-        background: "#92C7F3"
+        background: "#EC401B"
     }
 
     const [todos, setTodos] = useState([]);
@@ -57,7 +57,7 @@ function TodoList() {
     useEffect(() => {
         const fetchTodos = async () => {
             try {
-                const res = await fetch('http://localhost:5000/api/todo');
+                const res = await fetch('https://zany-slug-loincloth.cyclic.app/api/todo');
                 const data = await res.json();
                 setState(!state);
                 setTodos(data);
@@ -73,7 +73,7 @@ function TodoList() {
 
     // deleting the data
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/api/todo/${id}`, {
+        fetch(`https://zany-slug-loincloth.cyclic.app/api/todo/${id}`, {
             method: 'DELETE'
         })
             .then(response => response.json())
@@ -92,7 +92,7 @@ function TodoList() {
     // Handle change
 
     const handleComplete = (id, isCompleted) => {
-        fetch(`http://localhost:5000/api/todo/${id}`, {
+        fetch(`https://zany-slug-loincloth.cyclic.app/api/todo/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -122,13 +122,13 @@ function TodoList() {
         <div>
 
             <Grid container justifyContent={"left"}>
-                <Box sx={{ minWidth: 120, marginTop:2, marginBottom:2 }}>
+                <Box sx={{ minWidth: 120, marginTop: 2, marginBottom: 2 }}>
                     <FormControl fullWidth>
                         <Select
                             value={filter}
 
                             onChange={handleFilterChange}
-                            style={{ color: "red" }}>
+                            style={{ color: "black", border: "1px solid" }}>
                             <MenuItem value="All">All</MenuItem>
                             <MenuItem value="Not Completed">Not Completed</MenuItem>
                             <MenuItem value="Completed">Completed</MenuItem>
@@ -137,57 +137,61 @@ function TodoList() {
                 </Box>
             </Grid>
 
-            <TableContainer component={Paper}>
-                <Table>
-                    <TableHead>
-                        <TableRow style={tableStyle}>
-                            <TableCell><b>Sr No</b></TableCell>
-                            <TableCell><b>Title</b></TableCell>
-                            <TableCell><b>Description</b></TableCell>
-                            <TableCell><b>Actions</b></TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {/* // filtering the data */}
-                        {filteredTodos.map((e) => (
-                            <TableRow key={e._id}>
-                                <TableCell> <Checkbox {...label} checked={e.isCompleted} onChange={() => handleComplete(e._id, e.isCompleted)} /></TableCell>
-
-                                <TableCell>{e.title}</TableCell>
-                                <TableCell>{e.desc}</TableCell>
-                                <TableCell>
-
-
-                                    {/* upDATE tODO */}
-
-                                    <Button variant="contained" color="primary" onClick={handleOpen}><EditOutlinedIcon /></Button>
-                                    <Modal
-                                        open={open}
-                                        onClose={handleClose}
-                                        aria-labelledby="modal-modal-title"
-                                        aria-describedby="modal-modal-description"
-                                    >
-                                        <Box sx={style}>
-                                            <TextField id="standard-basic" name="title" label="Type your task" variant="standard" fullWidth />
-                                            <TextField id="standard-basic" name="desc" label="Description" variant="standard" fullWidth />
-
-                                            <Grid container justifyContent="center" marginTop={4}>
-                                                <Button variant="outlined" style={{ background: "#EC401B", color: "white", border: "none" }} >
-                                                    Update
-                                                </Button>
-                                            </Grid>
-                                        </Box>
-                                    </Modal>
-
-                                    <Button variant="contained" color="secondary" onClick={() => handleDelete(e._id)}><DeleteOutlineTwoToneIcon /></Button>
-
-                                </TableCell>
+            <Grid container justifyContent='center'>
+                <TableContainer component={Paper} >
+                    <Table>
+                        <TableHead>
+                            <TableRow style={tableStyle} >
+                                <TableCell style={{ color: "white" }}><b>Sr No</b></TableCell>
+                                <TableCell style={{ color: "white" }}><b>Title</b></TableCell>
+                                <TableCell style={{ color: "white" }}><b>Description</b></TableCell>
+                                <TableCell style={{ color: "white" }}><b>Actions</b></TableCell>
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
+                        </TableHead>
+                        <TableBody>
+                            {/* // filtering the data */}
+                            {filteredTodos.map((e) => (
+                                <TableRow key={e._id}>
+                                    <TableCell> <Checkbox {...label} checked={e.isCompleted} onChange={() => handleComplete(e._id, e.isCompleted)} /></TableCell>
 
-            </TableContainer>
+                                    <TableCell>{e.title}</TableCell>
+                                    <TableCell>{e.desc}</TableCell>
+                                    <TableCell>
+
+
+                                        {/* upDATE tODO */}
+
+                                        <Button variant="contained" color="primary" onClick={handleOpen}><EditOutlinedIcon /></Button>
+                                        <Modal
+                                            open={open}
+                                            onClose={handleClose}
+                                            aria-labelledby="modal-modal-title"
+                                            aria-describedby="modal-modal-description"
+                                        >
+                                            <Box sx={style}>
+                                                <TextField id="standard-basic" name="title" label="Type your task" variant="standard" fullWidth />
+                                                <TextField id="standard-basic" name="desc" label="Description" variant="standard" fullWidth />
+
+                                                <Grid container justifyContent="center" marginTop={4}>
+                                                    <Button variant="outlined" style={{ background: "#EC401B", color: "white", border: "none" }} >
+                                                        Update
+                                                    </Button>
+                                                </Grid>
+                                            </Box>
+                                        </Modal>
+
+                                        <Button variant="contained" color="secondary" style={{ background: "#F08519" }} onClick={() => handleDelete(e._id)}><DeleteOutlineTwoToneIcon /></Button>
+
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+
+                </TableContainer>
+
+
+            </Grid>
         </div>
     );
 }
